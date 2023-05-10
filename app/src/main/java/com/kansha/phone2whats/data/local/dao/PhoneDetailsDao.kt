@@ -1,5 +1,6 @@
 package com.kansha.phone2whats.data.local.dao
 
+
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -11,16 +12,16 @@ import com.kansha.phone2whats.data.model.PhoneDetails
 interface PhoneDetailsDao {
 
     @Query("SELECT * FROM phonedetails")
-    fun searchAll(): List<PhoneDetails>
+    fun getAllPhone(): List<PhoneDetails>
 
     @Insert
-    fun save(evento: PhoneDetails)
+    fun savePhone(evento: PhoneDetails)
 
     @Delete
-    fun remove(evento: PhoneDetails)
+    fun removePhone(evento: PhoneDetails)
 
     @Update
-    fun update(evento: PhoneDetails)
+    fun updatePhone(evento: PhoneDetails)
 
     @Query("SELECT * FROM phonedetails WHERE id = :id")
     fun searchId(id: Int): PhoneDetails

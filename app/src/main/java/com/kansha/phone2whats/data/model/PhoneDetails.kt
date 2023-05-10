@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class PhoneDetails(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     var contact: String?,
-    var phoneNumber: String,
+    var phoneNumber: String
 ) : Parcelable
