@@ -8,8 +8,7 @@ import com.kansha.phone2whats.data.model.PhoneDetails
 import com.kansha.phone2whats.databinding.ItemPhoneBinding
 
 class HomeAdapter(
-    private val longClick: (PhoneDetails, View) -> Unit,
-    private val shortClick: (PhoneDetails) -> Unit
+    private val longClick: (PhoneDetails, View) -> Unit
 ) :
     RecyclerView.Adapter<HomeScreenViewHolder>() {
 
@@ -25,16 +24,15 @@ class HomeAdapter(
         val contact = contacts[position]
         holder.bind(
             contact,
-            longClick,
-            shortClick
+            longClick
         )
     }
 
     override fun getItemCount() = contacts.size
 
-    fun update(eventos: List<PhoneDetails>) {
+    fun update(phoneDetails: List<PhoneDetails>) {
         this.contacts.clear()
-        this.contacts.addAll(eventos)
+        this.contacts.addAll(phoneDetails)
         notifyDataSetChanged()
     }
 }
@@ -44,8 +42,7 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
 
     fun bind(
         contact: PhoneDetails,
-        longClick: (PhoneDetails, View) -> Unit,
-        shortClick: (PhoneDetails) -> Unit
+        longClick: (PhoneDetails, View) -> Unit
     ) {
         binding.phoneNumber.text = contact.phoneNumber
         binding.contactName.text = contact.contact
@@ -53,10 +50,6 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
         binding.root.setOnLongClickListener {
             longClick(contact, binding.root)
             return@setOnLongClickListener true
-        }
-
-        binding.root.setOnClickListener {
-            shortClick(contact)
         }
     }
 }

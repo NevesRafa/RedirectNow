@@ -1,6 +1,5 @@
 package com.kansha.phone2whats.presentation.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +9,6 @@ import com.kansha.phone2whats.R
 import com.kansha.phone2whats.data.model.PhoneDetails
 import com.kansha.phone2whats.databinding.ActivityHomeBinding
 import com.kansha.phone2whats.presentation.create.CreateOrEditFragment
-import com.kansha.phone2whats.presentation.details.DetailsActivity
 import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity() {
@@ -52,11 +50,6 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerPhones.layoutManager = LinearLayoutManager(this)
 
         adapter = HomeAdapter(
-            shortClick = { phone ->
-                val intent = Intent(this, DetailsActivity::class.java)
-                intent.putExtra(DetailsActivity.EXTRA_PHONE_DETAILS, phone)
-                startActivity(intent)
-            },
             longClick = { phone, itemClicked ->
                 showPopupMenu(itemClicked, phone)
             })
