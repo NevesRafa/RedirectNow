@@ -3,6 +3,7 @@ package com.kansha.phone2whats.internal
 import androidx.room.Room
 import com.kansha.phone2whats.data.local.AppDatabase
 import com.kansha.phone2whats.domain.PhoneRepository
+import com.kansha.phone2whats.presentation.create.CreateOrEditViewModel
 import com.kansha.phone2whats.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -27,4 +28,5 @@ val appModule = module {
 
     //viewmodels
     viewModel { HomeViewModel(get()) }
+    viewModel { CreateOrEditViewModel() }
 }

@@ -15,13 +15,13 @@ interface PhoneDetailsDao {
     fun getAllPhone(): List<PhoneDetails>
 
     @Insert
-    fun savePhone(evento: PhoneDetails)
+    fun savePhone(phoneDetails: PhoneDetails)
 
     @Delete
-    fun removePhone(evento: PhoneDetails)
+    fun removePhone(phoneDetails: PhoneDetails)
 
     @Update
-    fun updatePhone(evento: PhoneDetails)
+    fun updatePhone(phoneDetails: PhoneDetails)
 
     @Query("SELECT * FROM phonedetails WHERE id = :id")
     fun searchId(id: Int): PhoneDetails
