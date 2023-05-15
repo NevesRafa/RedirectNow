@@ -45,6 +45,7 @@ class HomeViewModel(private val repository: PhoneRepository) : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 repository.removePhone(phone)
+                loadList()
             }
         }
     }

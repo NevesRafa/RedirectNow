@@ -1,7 +1,6 @@
 package com.kansha.phone2whats.presentation.splash
 
 import android.content.Intent
-import android.graphics.drawable.AnimatedImageDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         splashScreenDuration()
-        setUpImage()
     }
 
     private fun splashScreenDuration() {
@@ -28,10 +26,5 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, splashScreenDuration)
-    }
-
-    private fun setUpImage() {
-        val animation = binding.kansha.drawable as AnimatedImageDrawable
-        animation.start()
     }
 }

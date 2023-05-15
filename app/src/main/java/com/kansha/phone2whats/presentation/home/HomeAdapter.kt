@@ -8,7 +8,8 @@ import com.kansha.phone2whats.data.model.PhoneDetails
 import com.kansha.phone2whats.databinding.ItemPhoneBinding
 
 class HomeAdapter(
-    private val longClick: (PhoneDetails, View) -> Unit
+    private val longClick: (PhoneDetails, View) -> Unit,
+    private val shortClick: (PhoneDetails) -> Unit
 ) :
     RecyclerView.Adapter<HomeScreenViewHolder>() {
 
@@ -24,7 +25,8 @@ class HomeAdapter(
         val contact = contacts[position]
         holder.bind(
             contact,
-            longClick
+            longClick,
+            shortClick
         )
     }
 
@@ -42,7 +44,8 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
 
     fun bind(
         contact: PhoneDetails,
-        longClick: (PhoneDetails, View) -> Unit
+        longClick: (PhoneDetails, View) -> Unit,
+        shortClick: (PhoneDetails) -> Unit
     ) {
         binding.phoneNumber.text = contact.phoneNumber
         binding.contactName.text = contact.contact
@@ -50,6 +53,10 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
         binding.root.setOnLongClickListener {
             longClick(contact, binding.root)
             return@setOnLongClickListener true
+        }
+
+        binding.root.setOnClickListener {
+            shortClick(contact)
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.kansha.phone2whats.presentation.create
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,15 +69,6 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             val phoneNumberTyped = binding.phoneNumber.text.toString()
 
             viewModel.checksSaveOrEdit(contactTyped, phoneNumberTyped)
-            redirectToWhatsApp(phoneNumberTyped)
         }
     }
-
-    private fun redirectToWhatsApp(phoneNumberTyped: String) {
-        val url = "https://api.whatsapp.com/send?phone=$phoneNumberTyped"
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-    }
-
 }

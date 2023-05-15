@@ -1,7 +1,17 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Phone2Whats" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Primary brand color for the app -->
+        <item name="colorPrimary">#1B2028</item>
+        <!-- Darker variant of the primary brand color -->
+        <item name="colorPrimaryDark">#171B20</item>
+        <!-- Accent color used for highlights and other user interface accents -->
+        <item name="colorAccent">#FF4081</item>
+        <!-- Text color for primary content -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!-- Text color for secondary content -->
+        <item name="android:textColorSecondary">#BDBDBD</item>
+        <!-- Background color for the app -->
+        <item name="android:windowBackground">#1B2028</item>
     </style>
 </resources>
