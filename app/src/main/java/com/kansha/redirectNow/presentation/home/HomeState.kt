@@ -1,7 +1,7 @@
-package com.kansha.phone2whats.presentation.home
+package com.kansha.redirectNow.presentation.home
 
 import android.view.View
-import com.kansha.phone2whats.data.model.PhoneDetails
+import com.kansha.redirectNow.data.model.PhoneDetails
 
 sealed class HomeState {
 

@@ -1,4 +1,4 @@
-package com.kansha.phone2whats.presentation.home
+package com.kansha.redirectNow.presentation.home
 
 import android.content.Intent
 import android.net.Uri
@@ -9,11 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.kansha.phone2whats.R
-import com.kansha.phone2whats.data.model.PhoneDetails
-import com.kansha.phone2whats.databinding.ActivityHomeBinding
-import com.kansha.phone2whats.databinding.AlertDialogBinding
-import com.kansha.phone2whats.presentation.create.CreateOrEditFragment
+import com.kansha.redirectNow.R
+
+import com.kansha.redirectNow.data.model.PhoneDetails
+import com.kansha.redirectNow.databinding.ActivityHomeBinding
+import com.kansha.redirectNow.databinding.AlertDialogBinding
+
+import com.kansha.redirectNow.internal.extension.gone
+import com.kansha.redirectNow.presentation.create.CreateOrEditFragment
 import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity() {
@@ -30,8 +33,8 @@ class HomeActivity : AppCompatActivity() {
         setupPhoneList()
         setupObservers()
         fabAddPhone()
-
         viewModel.loadList()
+
     }
 
     private fun setupObservers() {
@@ -47,6 +50,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showPhoneList(result: List<PhoneDetails>) {
+        if (result.isEmpty()) {
+            binding.textEmptyList.visibility
+        } else {
+            binding.textEmptyList.gone()
+        }
         adapter.update(result)
     }
 

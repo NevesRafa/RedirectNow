@@ -1,4 +1,4 @@
-package com.kansha.phone2whats.data.model
+package com.kansha.redirectNow.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

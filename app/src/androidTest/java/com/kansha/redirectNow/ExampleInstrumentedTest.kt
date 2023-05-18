@@ -1,4 +1,4 @@
-package com.kansha.phone2whats
+package com.kansha.redirectNow
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

@@ -1,4 +1,4 @@
-package com.kansha.phone2whats.data.local.dao
+package com.kansha.redirectNow.data.local.dao
 
 
 import androidx.room.Dao
@@ -6,7 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.kansha.phone2whats.data.model.PhoneDetails
+import com.kansha.redirectNow.data.model.PhoneDetails
 
 @Dao
 interface PhoneDetailsDao {

@@ -1,12 +1,12 @@
-package com.kansha.phone2whats.presentation.create
+package com.kansha.redirectNow.presentation.create
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.kansha.phone2whats.data.model.PhoneDetails
-import com.kansha.phone2whats.databinding.FragmentCreateOrEditBinding
+import com.kansha.redirectNow.data.model.PhoneDetails
+import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
 import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {

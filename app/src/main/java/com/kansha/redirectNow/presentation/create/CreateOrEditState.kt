@@ -1,6 +1,6 @@
-package com.kansha.phone2whats.presentation.create
+package com.kansha.redirectNow.presentation.create
 
-import com.kansha.phone2whats.data.model.PhoneDetails
+import com.kansha.redirectNow.data.model.PhoneDetails
 
 sealed class CreateOrEditState {
 

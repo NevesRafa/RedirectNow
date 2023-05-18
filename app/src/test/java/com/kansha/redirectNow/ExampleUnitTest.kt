@@ -1,4 +1,4 @@
-package com.kansha.phone2whats
+package com.kansha.redirectNow
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,9 +1,9 @@
-package com.kansha.phone2whats.data.local
+package com.kansha.redirectNow.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.kansha.phone2whats.data.local.dao.PhoneDetailsDao
-import com.kansha.phone2whats.data.model.PhoneDetails
+import com.kansha.redirectNow.data.local.dao.PhoneDetailsDao
+import com.kansha.redirectNow.data.model.PhoneDetails
 
 @Database(entities = [PhoneDetails::class], version = 1, exportSchema = true)
 

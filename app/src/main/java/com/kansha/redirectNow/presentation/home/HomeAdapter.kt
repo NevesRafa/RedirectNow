@@ -1,11 +1,11 @@
-package com.kansha.phone2whats.presentation.home
+package com.kansha.redirectNow.presentation.home
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kansha.phone2whats.data.model.PhoneDetails
-import com.kansha.phone2whats.databinding.ItemPhoneBinding
+import com.kansha.redirectNow.data.model.PhoneDetails
+import com.kansha.redirectNow.databinding.ItemPhoneBinding
 
 class HomeAdapter(
     private val longClick: (PhoneDetails, View) -> Unit,

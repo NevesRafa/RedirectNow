@@ -1,7 +1,7 @@
-package com.kansha.phone2whats.domain
+package com.kansha.redirectNow.domain
 
-import com.kansha.phone2whats.data.local.dao.PhoneDetailsDao
-import com.kansha.phone2whats.data.model.PhoneDetails
+import com.kansha.redirectNow.data.local.dao.PhoneDetailsDao
+import com.kansha.redirectNow.data.model.PhoneDetails
 
 class PhoneRepository(private val database: PhoneDetailsDao) {
 

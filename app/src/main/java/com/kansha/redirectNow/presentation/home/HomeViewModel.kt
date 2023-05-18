@@ -1,12 +1,12 @@
-package com.kansha.phone2whats.presentation.home
+package com.kansha.redirectNow.presentation.home
 
 import android.view.MenuItem
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kansha.phone2whats.R
-import com.kansha.phone2whats.data.model.PhoneDetails
-import com.kansha.phone2whats.domain.PhoneRepository
+import com.kansha.redirectNow.R
+import com.kansha.redirectNow.data.model.PhoneDetails
+import com.kansha.redirectNow.domain.PhoneRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

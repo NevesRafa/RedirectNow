@@ -1,12 +1,12 @@
-package com.kansha.phone2whats.presentation.splash
+package com.kansha.redirectNow.presentation.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.kansha.phone2whats.databinding.ActivitySplashBinding
-import com.kansha.phone2whats.presentation.home.HomeActivity
+import com.kansha.redirectNow.databinding.ActivitySplashBinding
+import com.kansha.redirectNow.presentation.home.HomeActivity
 
 class SplashActivity : AppCompatActivity() {
 

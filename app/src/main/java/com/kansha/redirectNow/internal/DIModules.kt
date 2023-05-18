@@ -1,10 +1,10 @@
-package com.kansha.phone2whats.internal
+package com.kansha.redirectNow.internal
 
 import androidx.room.Room
-import com.kansha.phone2whats.data.local.AppDatabase
-import com.kansha.phone2whats.domain.PhoneRepository
-import com.kansha.phone2whats.presentation.create.CreateOrEditViewModel
-import com.kansha.phone2whats.presentation.home.HomeViewModel
+import com.kansha.redirectNow.data.local.AppDatabase
+import com.kansha.redirectNow.domain.PhoneRepository
+import com.kansha.redirectNow.presentation.create.CreateOrEditViewModel
+import com.kansha.redirectNow.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
