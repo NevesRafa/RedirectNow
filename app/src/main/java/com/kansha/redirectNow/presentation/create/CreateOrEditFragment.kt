@@ -1,9 +1,11 @@
 package com.kansha.redirectNow.presentation.create
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
@@ -69,6 +71,12 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             val phoneNumberTyped = binding.phoneNumber.text.toString()
 
             viewModel.checksSaveOrEdit(contactTyped, phoneNumberTyped)
+            hideKeyboard()
         }
+    }
+
+    private fun hideKeyboard() {
+        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 }
