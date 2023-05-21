@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.kansha.redirectNow.databinding.ActivitySplashBinding
-import com.kansha.redirectNow.presentation.home.HomeActivity
+import com.kansha.redirectNow.presentation.tutorial.TutorialActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
     private fun splashScreenDuration() {
         val splashScreenDuration = 3000L // 3 segundos
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashActivity, HomeActivity::class.java)
+            val intent = Intent(this@SplashActivity, TutorialActivity::class.java)
             startActivity(intent)
             finish()
         }, splashScreenDuration)

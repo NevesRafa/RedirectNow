@@ -6,7 +6,7 @@
         <!-- Darker variant of the primary brand color -->
         <item name="colorPrimaryDark">#171B20</item>
         <!-- Accent color used for highlights and other user interface accents -->
-        <item name="colorAccent">#FF4081</item>
+        <item name="colorAccent">#7B4D8F</item>
         <!-- Text color for primary content -->
         <item name="android:textColorPrimary">#212121</item>
         <!-- Text color for secondary content -->

@@ -52,7 +52,8 @@
             android:src="@drawable/ic_phone"
             app:layout_anchor="@id/bottomAppBar"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
-            app:tint="#1B2028" />
+            app:backgroundTint="?attr/colorAccent"
+            app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
