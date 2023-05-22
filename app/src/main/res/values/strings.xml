@@ -8,5 +8,6 @@
     <string name="edit">Editar</string>
     <string name="contacts">Contatos</string>
     <string name="redirecionar_para_o_whatsapp">Redirecionar para o WhatsApp?</string>
-    <string name="caso_n_o_deseje_ser_redirecionado_agora_n_o_se_preocupe_o_contato_ficar_salvo">Caso não deseje ser redirecionado agora não se preocupe o contato ficará salvo =)</string>
+    <string name="message_from_save">Caso não deseje ser redirecionado agora não se preocupe o contato ficará salvo =)</string>
+    <string name="message_from_short_click">Deseja ir agora para o WhatsApp?</string>
 </resources>

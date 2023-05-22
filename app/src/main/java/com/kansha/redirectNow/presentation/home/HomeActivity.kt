@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
 
         adapter = HomeAdapter(
             shortClick = { phone ->
-                showDialog(phone.phoneNumber)
+                showDialog(phone.phoneNumber, getString(R.string.message_from_short_click))
             },
             longClick = { phone, itemClicked ->
                 showPopupMenu(itemClicked, phone)
@@ -79,7 +79,7 @@ class HomeActivity : AppCompatActivity() {
 
             val addContact = CreateOrEditFragment(clickOnSave = { phone ->
                 viewModel.savePhone(phone)
-                showDialog(phone.phoneNumber)
+                showDialog(phone.phoneNumber, getString(R.string.message_from_save))
             })
             addContact.show(supportFragmentManager, null)
         }
@@ -108,7 +108,7 @@ class HomeActivity : AppCompatActivity() {
         fragment.show(supportFragmentManager, null)
     }
 
-    private fun showDialog(phone: String) {
+    private fun showDialog(phone: String, message: String) {
         val customView = AlertDialogBinding.inflate(LayoutInflater.from(this))
 
         val dialog = MaterialAlertDialogBuilder(this)
@@ -117,7 +117,7 @@ class HomeActivity : AppCompatActivity() {
             .show()
 
         customView.alertDialogTitle.text = getString(R.string.redirecionar_para_o_whatsapp)
-        customView.alertDialogMessage.text = getString(R.string.caso_n_o_deseje_ser_redirecionado_agora_n_o_se_preocupe_o_contato_ficar_salvo)
+        customView.alertDialogMessage.text = message
 
         customView.alertDialogBtnAccept.setOnClickListener {
             redirectToWhatsApp(phone)
