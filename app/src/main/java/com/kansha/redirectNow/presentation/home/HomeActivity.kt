@@ -9,13 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
-
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.ActivityHomeBinding
 import com.kansha.redirectNow.databinding.AlertDialogBinding
-
-import com.kansha.redirectNow.internal.extension.gone
+import com.kansha.redirectNow.internal.extension.setErrorStyle
 import com.kansha.redirectNow.presentation.create.CreateOrEditFragment
 import org.koin.android.ext.android.inject
 
@@ -44,17 +43,12 @@ class HomeActivity : AppCompatActivity() {
                 is HomeState.Success -> showPhoneList(state.result)
                 is HomeState.EditOrRemove -> showPopupMenu(state.itemClick, state.phoneDetails)
                 is HomeState.OpenModalEdit -> showModalToEdit(state.phoneDetails)
-                is HomeState.Error -> {}
+                is HomeState.Error -> showErrorMessage(state.errorMessage)
             }
         }
     }
 
     private fun showPhoneList(result: List<PhoneDetails>) {
-        if (result.isEmpty()) {
-            binding.textEmptyList.visibility
-        } else {
-            binding.textEmptyList.gone()
-        }
         adapter.update(result)
     }
 
@@ -133,5 +127,11 @@ class HomeActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
         startActivity(intent)
+    }
+
+    private fun showErrorMessage(errorMessage: String?) {
+        Snackbar.make(binding.root, getString(R.string.error_message, errorMessage), Snackbar.LENGTH_LONG)
+            .setErrorStyle()
+            .show()
     }
 }

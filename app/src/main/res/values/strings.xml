@@ -7,6 +7,7 @@
     <string name="remove">Remover</string>
     <string name="edit">Editar</string>
     <string name="contacts">Contatos</string>
+    <string name="error_message">Erro: %s</string>
     <string name="redirecionar_para_o_whatsapp">Redirecionar para o WhatsApp?</string>
     <string name="message_from_save">Caso não deseje ser redirecionado agora não se preocupe o contato ficará salvo =)</string>
     <string name="message_from_short_click">Deseja ir agora para o WhatsApp?</string>

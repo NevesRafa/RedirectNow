@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.home.HomeActivity">
 
     <TextView
@@ -50,9 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_phone"
+            app:backgroundTint="?attr/colorAccent"
             app:layout_anchor="@id/bottomAppBar"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
-            app:backgroundTint="?attr/colorAccent"
             app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

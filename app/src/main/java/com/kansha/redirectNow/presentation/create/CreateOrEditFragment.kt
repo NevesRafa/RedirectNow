@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
+import com.kansha.redirectNow.R
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
+import com.kansha.redirectNow.internal.extension.setErrorStyle
 import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {
@@ -44,7 +47,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
                 is CreateOrEditState.Loading -> {}
                 is CreateOrEditState.Save -> saveOrEdit(state.phoneDetails)
                 is CreateOrEditState.Edit -> showContactForEditOnTheScreen(state.phoneDetails)
-                is CreateOrEditState.Error -> {}
+                is CreateOrEditState.Error -> showErrorMessage(state.errorMessage)
             }
         }
     }
@@ -78,5 +81,11 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun hideKeyboard() {
         val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun showErrorMessage(errorMessage: String?) {
+        Snackbar.make(binding.root, getString(R.string.error_message, errorMessage), Snackbar.LENGTH_LONG)
+            .setErrorStyle()
+            .show()
     }
 }

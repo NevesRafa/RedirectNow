@@ -20,6 +20,7 @@ class HomeViewModel(private val repository: PhoneRepository) : ViewModel() {
 
             loadStateLiveData.postValue(HomeState.Loading)
 
+
             try {
                 val phoneList = withContext(Dispatchers.IO) {
                     repository.getPhonesList()
