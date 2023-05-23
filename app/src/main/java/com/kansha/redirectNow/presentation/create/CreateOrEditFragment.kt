@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
@@ -73,8 +74,12 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             val contactTyped = binding.contact.text.toString()
             val phoneNumberTyped = binding.phoneNumber.text.toString()
 
-            viewModel.checksSaveOrEdit(contactTyped, phoneNumberTyped)
-            hideKeyboard()
+            if (contactTyped.isBlank() || phoneNumberTyped.isBlank()) {
+                Toast.makeText(requireContext(), "Por favor, preencha os campos.", Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.checksSaveOrEdit(contactTyped, phoneNumberTyped)
+                hideKeyboard()
+            }
         }
     }
 

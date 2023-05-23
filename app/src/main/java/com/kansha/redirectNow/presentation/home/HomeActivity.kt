@@ -58,7 +58,9 @@ class HomeActivity : AppCompatActivity() {
 
         adapter = HomeAdapter(
             shortClick = { phone ->
-                showDialog(phone.phoneNumber, getString(R.string.message_from_short_click))
+                showDialog(phone.phoneNumber, getString(R.string.message_from_short_click)) {
+                    redirectToWhatsApp(phone.phoneNumber)
+                }
             },
             longClick = { phone, itemClicked ->
                 showPopupMenu(itemClicked, phone)
@@ -73,7 +75,9 @@ class HomeActivity : AppCompatActivity() {
 
             val addContact = CreateOrEditFragment(clickOnSave = { phone ->
                 viewModel.savePhone(phone)
-                showDialog(phone.phoneNumber, getString(R.string.message_from_save))
+                showDialog(phone.phoneNumber, getString(R.string.message_from_save)) {
+                    redirectToWhatsApp(phone.phoneNumber)
+                }
             })
             addContact.show(supportFragmentManager, null)
         }
@@ -102,7 +106,7 @@ class HomeActivity : AppCompatActivity() {
         fragment.show(supportFragmentManager, null)
     }
 
-    private fun showDialog(phone: String, message: String) {
+    private fun showDialog(phone: String, message: String, action: () -> Unit) {
         val customView = AlertDialogBinding.inflate(LayoutInflater.from(this))
 
         val dialog = MaterialAlertDialogBuilder(this)
@@ -114,7 +118,7 @@ class HomeActivity : AppCompatActivity() {
         customView.alertDialogMessage.text = message
 
         customView.alertDialogBtnAccept.setOnClickListener {
-            redirectToWhatsApp(phone)
+            action()
             dialog.dismiss()
         }
         customView.alertDialogBtnDecline.setOnClickListener {

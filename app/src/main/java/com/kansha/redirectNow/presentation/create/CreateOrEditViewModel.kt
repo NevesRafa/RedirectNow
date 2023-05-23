@@ -16,12 +16,12 @@ class CreateOrEditViewModel : ViewModel() {
         if (!isEdit) {
             contact = createNewContact(contactTyped, phoneNumberTyped)
         } else {
-            contact = changeContactforEdit(contactTyped, phoneNumberTyped)
+            contact = changeContactForEdit(contactTyped, phoneNumberTyped)
         }
         loadStateLiveData.postValue(CreateOrEditState.Save(contact))
     }
 
-    private fun changeContactforEdit(contactTyped: String, phoneNumberTyped: String): PhoneDetails {
+    private fun changeContactForEdit(contactTyped: String, phoneNumberTyped: String): PhoneDetails {
 
         contactForEdit?.apply {
             contact = contactTyped
