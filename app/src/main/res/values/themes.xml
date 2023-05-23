@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.Phone2Whats" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.RedirectNow" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color for the app -->
         <item name="colorPrimary">#1B2028</item>
         <!-- Darker variant of the primary brand color -->
@@ -15,5 +15,5 @@
         <item name="android:windowBackground">#FFFFFF</item>
     </style>
 
-    <style name="Theme.Phone2Whats" parent="Base.Theme.Phone2Whats" />
+    <style name="Base.Theme.RedirectNow." parent="Base.Theme.RedirectNow" />
 </resources>
