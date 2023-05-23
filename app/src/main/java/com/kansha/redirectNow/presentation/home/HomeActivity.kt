@@ -14,7 +14,9 @@ import com.kansha.redirectNow.R
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.ActivityHomeBinding
 import com.kansha.redirectNow.databinding.AlertDialogBinding
+import com.kansha.redirectNow.internal.extension.gone
 import com.kansha.redirectNow.internal.extension.setErrorStyle
+import com.kansha.redirectNow.internal.extension.visible
 import com.kansha.redirectNow.presentation.create.CreateOrEditFragment
 import org.koin.android.ext.android.inject
 
@@ -49,6 +51,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showPhoneList(result: List<PhoneDetails>) {
+        if (result.isEmpty()) {
+            binding.textEmptyList.visible()
+        } else {
+            binding.textEmptyList.gone()
+        }
         adapter.update(result)
     }
 
