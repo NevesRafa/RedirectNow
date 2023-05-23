@@ -58,7 +58,7 @@ class HomeActivity : AppCompatActivity() {
 
         adapter = HomeAdapter(
             shortClick = { phone ->
-                showDialog(phone.phoneNumber, getString(R.string.message_from_short_click)) {
+                showDialog(getString(R.string.redirecionar_para_o_whatsapp), getString(R.string.message_from_short_click)) {
                     redirectToWhatsApp(phone.phoneNumber)
                 }
             },
@@ -75,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
 
             val addContact = CreateOrEditFragment(clickOnSave = { phone ->
                 viewModel.savePhone(phone)
-                showDialog(phone.phoneNumber, getString(R.string.message_from_save)) {
+                showDialog(getString(R.string.redirecionar_para_o_whatsapp), getString(R.string.message_from_save)) {
                     redirectToWhatsApp(phone.phoneNumber)
                 }
             })
@@ -88,7 +88,14 @@ class HomeActivity : AppCompatActivity() {
         popup.menuInflater.inflate(R.menu.menu_edit_remove, popup.menu)
 
         popup.setOnMenuItemClickListener { menuItem ->
-            viewModel.clickMenu(menuItem, phone)
+            if (menuItem.itemId == R.id.menu_remove) {
+                showDialog(getString(R.string.title_remove), getString(R.string.message_remove)) {
+                    viewModel.clickMenu(menuItem, phone)
+                }
+            } else {
+
+                viewModel.clickMenu(menuItem, phone)
+            }
             return@setOnMenuItemClickListener true
         }
         popup.show()
@@ -106,7 +113,7 @@ class HomeActivity : AppCompatActivity() {
         fragment.show(supportFragmentManager, null)
     }
 
-    private fun showDialog(phone: String, message: String, action: () -> Unit) {
+    private fun showDialog(title: String, message: String, action: () -> Unit) {
         val customView = AlertDialogBinding.inflate(LayoutInflater.from(this))
 
         val dialog = MaterialAlertDialogBuilder(this)
@@ -114,7 +121,7 @@ class HomeActivity : AppCompatActivity() {
             .setCancelable(false)
             .show()
 
-        customView.alertDialogTitle.text = getString(R.string.redirecionar_para_o_whatsapp)
+        customView.alertDialogTitle.text = title
         customView.alertDialogMessage.text = message
 
         customView.alertDialogBtnAccept.setOnClickListener {

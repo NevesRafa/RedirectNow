@@ -11,4 +11,6 @@
     <string name="redirecionar_para_o_whatsapp">Redirecionar para o WhatsApp?</string>
     <string name="message_from_save">Caso não deseje ser redirecionado agora não se preocupe o contato ficará salvo =)</string>
     <string name="message_from_short_click">Deseja ir agora para o WhatsApp?</string>
+    <string name="title_remove">Deseja remover esse contato?</string>
+    <string name="message_remove">A remoção é permanente. Você realmente deseja remover este contato da sua lista?</string>
 </resources>
