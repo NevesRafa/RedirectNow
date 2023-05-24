@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.ItemPhoneBinding
+import com.kansha.redirectNow.internal.extension.formatPhoneNumber
 
 class HomeAdapter(
     private val longClick: (PhoneDetails, View) -> Unit,
@@ -47,7 +48,9 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
         longClick: (PhoneDetails, View) -> Unit,
         shortClick: (PhoneDetails) -> Unit
     ) {
-        binding.phoneNumber.text = contact.phoneNumber
+        val phone = contact.phoneNumber
+        val formatPhone = formatPhoneNumber(phone)
+        binding.phoneNumber.text = formatPhone
         binding.contactName.text = contact.contact
 
         binding.root.setOnLongClickListener {

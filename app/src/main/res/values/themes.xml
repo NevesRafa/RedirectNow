@@ -13,6 +13,11 @@
         <item name="android:textColorSecondary">#757575</item>
         <!-- Background color for the app -->
         <item name="android:windowBackground">#FFFFFF</item>
+
+        <item name="colorPrimaryContainer">#EADDFF</item>
+        <item name="colorSurface">#FFFBFE</item>
+        <item name="colorOnSurface">#1C1B1F</item>
+        <item name="colorOnPrimaryContainer">#21005D</item>
     </style>
 
     <style name="Base.Theme.RedirectNow." parent="Base.Theme.RedirectNow" />
