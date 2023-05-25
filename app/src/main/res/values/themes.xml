@@ -21,4 +21,8 @@
     </style>
 
     <style name="Base.Theme.RedirectNow." parent="Base.Theme.RedirectNow" />
+
+    <style name="RoundButtonStyle">
+        <item name="android:background">@drawable/round_button_background</item>
+    </style>
 </resources>

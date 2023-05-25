@@ -29,6 +29,7 @@ class TutorialActivity : AppCompatActivity() {
 
             setupPageView()
             setupViewPagerListener()
+            setupButtonSkip()
 
             val redirectButton = binding.redirectButton
             redirectButton.setOnClickListener {
@@ -48,21 +49,27 @@ class TutorialActivity : AppCompatActivity() {
     }
 
     private fun setupPageView() {
-        val dados = listOf(
+        val tutorialText = listOf(
             TutorialDetails(R.drawable.start, "Na tela inicial do aplicativo, clique no canto inferior direito para adicionar um novo contato."),
             TutorialDetails(
                 R.drawable.name_and_phone,
                 "Preencha os campos \"Nome\" e \"Telefone\". É fundamental incluir o DDD, pois sem ele o contato não será localizado corretamente."
             ),
-            TutorialDetails(R.drawable.click_save, "Após preenchidos, clique em \"Salvar\" para confirmar e redirecionar."),
-            TutorialDetails(R.drawable.short_click, "Para abrir a conversa com o contato, basta tocar uma vez no nome ou no telefone."),
+            TutorialDetails(
+                R.drawable.go_whats,
+                "Após preenchidos, aparecerá uma confirmação se gostaria de ir para o WhatsApp ou somente salvar o contato."
+            ),
+            TutorialDetails(
+                R.drawable.short_click,
+                "Para abrir a conversa com o contato, basta tocar uma vez no contato e confirmar se deseja ir para o WhatsApp."
+            ),
             TutorialDetails(
                 R.drawable.long_click,
-                "Para editar o contato ou removê-lo da lista, mantenha pressionado o nome ou o telefone por alguns instantes."
+                "Para editar o contato ou removê-lo da lista, mantenha pressionado o contato por alguns instantes."
             )
         )
 
-        val adapter = ViewPagerAdapter(this, dados)
+        val adapter = ViewPagerAdapter(this, tutorialText)
         binding.viewPager.adapter = adapter
 
         val wormDotsIndicator = binding.wormDotsIndicator
@@ -105,5 +112,11 @@ class TutorialActivity : AppCompatActivity() {
         val viewPager = binding.viewPager
         val nextPage = viewPager.currentItem + 1
         viewPager.setCurrentItem(nextPage, true)
+    }
+
+    private fun setupButtonSkip() {
+        binding.buttonSkip.setOnClickListener {
+            redirectToHomeScreen()
+        }
     }
 }

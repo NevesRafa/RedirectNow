@@ -17,6 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:letterSpacing="0.1"
+        android:text="@string/skip"
+        android:textAllCaps="true"
+        android:textColor="?attr/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
         android:id="@+id/worm_dots_indicator"
         android:layout_width="wrap_content"
@@ -33,13 +45,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_pager" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/redirectButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:src="@drawable/ic_home"
+        style="@style/RoundButtonStyle"
         android:visibility="gone"
+        android:padding="8dp"
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="@id/worm_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"

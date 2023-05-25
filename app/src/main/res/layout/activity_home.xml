@@ -49,7 +49,7 @@
             android:id="@+id/fab_add_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_phone"
+            android:src="@drawable/ic_person_add"
             app:backgroundTint="?attr/colorAccent"
             app:layout_anchor="@id/bottomAppBar"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"

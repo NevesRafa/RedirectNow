@@ -12,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
+import com.kansha.redirectNow.internal.extension.PhoneNumberTextWatcher
 import com.kansha.redirectNow.internal.extension.setErrorStyle
 import org.koin.android.ext.android.inject
 
@@ -40,6 +41,9 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         setupObservers()
         loadDataToEdit()
         saveButton()
+
+        val editText = binding.phoneNumber
+        editText.addTextChangedListener(PhoneNumberTextWatcher(editText))
     }
 
     private fun setupObservers() {
