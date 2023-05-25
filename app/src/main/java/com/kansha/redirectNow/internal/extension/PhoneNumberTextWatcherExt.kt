@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.widget.EditText
 
 class PhoneNumberTextWatcher(private val editText: EditText) : TextWatcher {
-
     private var isFormatting = false
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -22,7 +21,16 @@ class PhoneNumberTextWatcher(private val editText: EditText) : TextWatcher {
 
         // Clear the previous input formatting
         val digits = s?.toString()?.replace("[^\\d]".toRegex(), "") ?: ""
-        editText.setText(formatPhoneNumber(digits))
+        val formattedPhoneNumber = formatPhoneNumber(digits)
+
+        // Check if the formatted phone number exceeds the maximum limit
+        val maxLength = 23
+        if (formattedPhoneNumber.length <= maxLength) {
+            editText.setText(formattedPhoneNumber)
+        } else {
+            // Truncate the phone number to the maximum limit
+            editText.setText(formattedPhoneNumber.substring(0, maxLength))
+        }
 
         // Move the cursor to the end of the text
         editText.setSelection(editText.text?.length ?: 0)
