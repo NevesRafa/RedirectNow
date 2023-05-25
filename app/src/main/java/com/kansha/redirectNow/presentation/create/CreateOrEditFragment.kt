@@ -18,6 +18,7 @@ import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {
 
+    val isEdit = false
 
     companion object {
         const val EXTRA_PHONE_EDIT = "extra_phone_edit"
@@ -66,6 +67,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun showContactForEditOnTheScreen(contactForEdit: PhoneDetails?) {
         binding.contact.setText(contactForEdit?.contact)
         binding.phoneNumber.setText(contactForEdit?.phoneNumber)
+        binding.fabSaveRedirect.text = "Salvar alteração"
     }
 
     private fun saveOrEdit(contact: PhoneDetails) {
