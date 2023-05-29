@@ -10,7 +10,8 @@ import com.kansha.redirectNow.databinding.ItemPhoneBinding
 
 class HomeAdapter(
     private val longClick: (PhoneDetails, View) -> Unit,
-    private val shortClick: (PhoneDetails) -> Unit
+    private val redirectWhatsApp: (PhoneDetails) -> Unit,
+    private val redirectCall: (PhoneDetails) -> Unit
 ) :
     RecyclerView.Adapter<HomeScreenViewHolder>() {
 
@@ -27,7 +28,8 @@ class HomeAdapter(
         holder.bind(
             contact,
             longClick,
-            shortClick
+            redirectWhatsApp,
+            redirectCall
         )
     }
 
@@ -46,7 +48,8 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
     fun bind(
         contact: PhoneDetails,
         longClick: (PhoneDetails, View) -> Unit,
-        shortClick: (PhoneDetails) -> Unit
+        redirectWhatsApp: (PhoneDetails) -> Unit,
+        redirectCall: (PhoneDetails) -> Unit
     ) {
 
         binding.phoneNumber.text = contact.phoneNumber
@@ -57,8 +60,12 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
             return@setOnLongClickListener true
         }
 
-        binding.root.setOnClickListener {
-            shortClick(contact)
+        binding.redirectWhatsapp.setOnClickListener {
+            redirectWhatsApp(contact)
+        }
+
+        binding.redirectCall.setOnClickListener {
+            redirectCall(contact)
         }
     }
 }

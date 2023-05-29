@@ -1,17 +1,16 @@
 <resources>
     <string name="app_name">RedirectNow</string>
-    <string name="save_and_redirect">Salvar e Redirecionar</string>
+
+
+    <string name="save_and_redirect">Salvar Contato</string>
+    <string name="remove">Remover</string>
+    <string name="edit">Editar</string>
     <string name="phone_number">Telefone</string>
     <string name="contact">Contato</string>
     <string name="add_phone_number">Adicionar Telefone</string>
-    <string name="remove">Remover</string>
-    <string name="edit">Editar</string>
     <string name="contacts">Contatos</string>
     <string name="error_message">Erro: %s</string>
-    <string name="redirecionar_para_o_whatsapp">Redirecionar para o WhatsApp?</string>
-    <string name="message_from_save">Caso não deseje ser redirecionado agora não se preocupe o contato ficará salvo =)</string>
-    <string name="message_from_short_click">Deseja ir agora para o WhatsApp?</string>
-    <string name="title_remove">Deseja remover esse contato?</string>
-    <string name="message_remove">A remoção é permanente. Você realmente deseja remover este contato da sua lista?</string>
+    <string name="title_remove">Remover Contato</string>
+    <string name="message_remove">Tem certeza de que deseja remover este contato?</string>
     <string name="skip">Pular</string>
 </resources>

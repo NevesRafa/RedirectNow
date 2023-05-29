@@ -64,10 +64,11 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerPhones.layoutManager = LinearLayoutManager(this)
 
         adapter = HomeAdapter(
-            shortClick = { phone ->
-                showDialog(getString(R.string.redirecionar_para_o_whatsapp), getString(R.string.message_from_short_click)) {
-                    redirectToWhatsApp(phone.phoneNumber)
-                }
+            redirectWhatsApp = { phone ->
+                redirectToWhatsApp(phone.phoneNumber)
+            },
+            redirectCall = { phone ->
+                makePhoneCall(phone.phoneNumber)
             },
             longClick = { phone, itemClicked ->
                 showPopupMenu(itemClicked, phone)
@@ -82,9 +83,6 @@ class HomeActivity : AppCompatActivity() {
 
             val addContact = CreateOrEditFragment(clickOnSave = { phone ->
                 viewModel.savePhone(phone)
-                showDialog(getString(R.string.redirecionar_para_o_whatsapp), getString(R.string.message_from_save)) {
-                    redirectToWhatsApp(phone.phoneNumber)
-                }
             })
             addContact.show(supportFragmentManager, null)
         }
@@ -144,6 +142,12 @@ class HomeActivity : AppCompatActivity() {
         val url = "https://api.whatsapp.com/send?phone=$phoneNumberTyped"
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
+        startActivity(intent)
+    }
+
+    private fun makePhoneCall(phoneNumberTyped: String) {
+        val uri = Uri.parse("tel:$phoneNumberTyped")
+        val intent = Intent(Intent.ACTION_DIAL, uri)
         startActivity(intent)
     }
 

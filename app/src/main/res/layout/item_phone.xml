@@ -20,11 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:src="@drawable/ic_person"
-            app:tint="?colorOnSurface"
             app:layout_constraintBottom_toBottomOf="@id/contact_name"
             app:layout_constraintEnd_toStartOf="@id/contact_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/contact_name" />
+            app:layout_constraintTop_toTopOf="@id/contact_name"
+            app:tint="?colorOnSurface" />
 
         <TextView
             android:id="@+id/contact_name"
@@ -44,11 +44,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_phone"
-            app:tint="?colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/phone_number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ic_name" />
+            app:layout_constraintTop_toBottomOf="@id/ic_name"
+            app:tint="?colorOnSurface" />
 
         <TextView
             android:id="@+id/phone_number"
@@ -61,6 +61,32 @@
             app:layout_constraintStart_toEndOf="@id/ic_phone"
             app:layout_constraintTop_toBottomOf="@id/contact_name"
             tool:text="(15) 991307093" />
+
+        <ImageView
+            android:id="@+id/redirect_whatsapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#25D366" />
+
+        <ImageView
+            android:id="@+id/redirect_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/redirect_whatsapp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#007AFF" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
