@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
+import com.kansha.redirectNow.domain.countryList
 import com.kansha.redirectNow.internal.extension.PhoneNumberTextWatcher
 import com.kansha.redirectNow.internal.extension.setErrorStyle
 import org.koin.android.ext.android.inject
@@ -42,6 +44,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         setupObservers()
         loadDataToEdit()
         saveButton()
+        showDropDown()
 
         val editText = binding.phoneNumber
         editText.addTextChangedListener(PhoneNumberTextWatcher(editText))
@@ -52,10 +55,15 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             when (state) {
                 is CreateOrEditState.Loading -> {}
                 is CreateOrEditState.Save -> saveOrEdit(state.phoneDetails)
+                is CreateOrEditState.InvalidDdi -> toastInvalidDdi()
                 is CreateOrEditState.Edit -> showContactForEditOnTheScreen(state.phoneDetails)
                 is CreateOrEditState.Error -> showErrorMessage(state.errorMessage)
             }
         }
+    }
+
+    private fun toastInvalidDdi() {
+        Toast.makeText(requireContext(), "DDI inválido", Toast.LENGTH_SHORT).show()
     }
 
     private fun loadDataToEdit() {
@@ -67,7 +75,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun showContactForEditOnTheScreen(contactForEdit: PhoneDetails?) {
         binding.contact.setText(contactForEdit?.contact)
         binding.phoneNumber.setText(contactForEdit?.phoneNumber)
-        binding.fabSaveRedirect.text = "Salvar alteração"
+        binding.fabSaveRedirect.text = getString(R.string.save_change)
     }
 
     private fun saveOrEdit(contact: PhoneDetails) {
@@ -79,11 +87,12 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         binding.fabSaveRedirect.setOnClickListener {
             val contactTyped = binding.contact.text.toString()
             val phoneNumberTyped = binding.phoneNumber.text.toString()
+            val ddiTyped = binding.ddi.text.toString()
 
-            if (contactTyped.isBlank() || phoneNumberTyped.isBlank()) {
+            if (contactTyped.isBlank() || phoneNumberTyped.isBlank() || ddiTyped.isBlank()) {
                 Toast.makeText(requireContext(), "Por favor, preencha os campos.", Toast.LENGTH_LONG).show()
             } else {
-                viewModel.checksSaveOrEdit(contactTyped, phoneNumberTyped)
+                viewModel.checksSaveOrEdit(contactTyped, ddiTyped, phoneNumberTyped)
                 hideKeyboard()
             }
         }
@@ -92,6 +101,22 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun hideKeyboard() {
         val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun showDropDown() {
+        val countryCodes = countryList.map { it.countryCode }
+        val adapter = ArrayAdapter(requireContext(), R.layout.ddi_dropdown_item, countryCodes)
+        binding.ddi.setAdapter(adapter)
+        binding.ddi.setOnItemClickListener { _, _, position, _ ->
+            val countryCode = countryCodes[position]
+            val countryName = getCountryName(countryCode)
+            Toast.makeText(requireContext(), countryName, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getCountryName(countryCode: String): String {
+        val country = countryList.find { it.countryCode == countryCode }
+        return country?.name ?: ""
     }
 
     private fun showErrorMessage(errorMessage: String?) {

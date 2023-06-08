@@ -9,6 +9,7 @@ sealed class CreateOrEditState {
     data class Edit(val phoneDetails: PhoneDetails) : CreateOrEditState()
 
     data class Save(val phoneDetails: PhoneDetails) : CreateOrEditState()
+    object InvalidDdi : CreateOrEditState()
 
     data class Error(val errorMessage: String?) : CreateOrEditState()
 

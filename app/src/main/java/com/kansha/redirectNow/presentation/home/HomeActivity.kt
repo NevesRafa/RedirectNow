@@ -65,7 +65,7 @@ class HomeActivity : AppCompatActivity() {
 
         adapter = HomeAdapter(
             redirectWhatsApp = { phone ->
-                redirectToWhatsApp(phone.phoneNumber)
+                redirectToWhatsApp(phone.ddi, phone.phoneNumber)
             },
             redirectCall = { phone ->
                 makePhoneCall(phone.phoneNumber)
@@ -138,8 +138,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun redirectToWhatsApp(phoneNumberTyped: String) {
-        val url = "https://api.whatsapp.com/send?phone=$phoneNumberTyped"
+    private fun redirectToWhatsApp(ddiTyped: String, phoneNumberTyped: String) {
+        val url = "https://api.whatsapp.com/send?phone=$ddiTyped+$phoneNumberTyped"
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
         startActivity(intent)

@@ -13,4 +13,5 @@
     <string name="title_remove">Remover Contato</string>
     <string name="message_remove">Tem certeza de que deseja remover este contato?</string>
     <string name="skip">Pular</string>
+    <string name="save_change">Salvar alteração</string>
 </resources>

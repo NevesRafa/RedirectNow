@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class PhoneDetails(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    var contact: String?,
+    var contact: String,
+    var ddi: String,
     var phoneNumber: String
 ) : Parcelable
