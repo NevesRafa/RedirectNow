@@ -20,7 +20,7 @@ import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {
 
-    val isEdit = false
+    private var toast: Toast? = null
 
     companion object {
         const val EXTRA_PHONE_EDIT = "extra_phone_edit"
@@ -106,17 +106,28 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun showDropDown() {
         val countryCodes = countryList.map { it.countryCode }
         val adapter = ArrayAdapter(requireContext(), R.layout.ddi_dropdown_item, countryCodes)
+
         binding.ddi.setAdapter(adapter)
-        binding.ddi.setOnItemClickListener { _, _, position, _ ->
-            val countryCode = countryCodes[position]
-            val countryName = getCountryName(countryCode)
-            Toast.makeText(requireContext(), countryName, Toast.LENGTH_SHORT).show()
+
+        binding.ddi.setOnItemClickListener { _, _, _, _ ->
+            val typedText = binding.ddi.text.toString()
+            val countryName = getCountryName(typedText)
+            showToast(countryName)
         }
     }
 
     private fun getCountryName(countryCode: String): String {
         val country = countryList.find { it.countryCode == countryCode }
         return country?.name ?: ""
+    }
+
+    private fun showToast(message: String) {
+        toast?.cancel()
+
+        if (message.isNotEmpty()) {
+            toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
+            toast?.show()
+        }
     }
 
     private fun showErrorMessage(errorMessage: String?) {
