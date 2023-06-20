@@ -12,5 +12,6 @@ data class PhoneDetails(
     val id: Int = 0,
     var contact: String,
     var ddi: String,
+    var flagCode: String,
     var phoneNumber: String
 ) : Parcelable

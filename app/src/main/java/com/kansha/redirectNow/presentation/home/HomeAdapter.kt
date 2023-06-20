@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.ItemPhoneBinding
 
@@ -67,5 +68,9 @@ class HomeScreenViewHolder(private val binding: ItemPhoneBinding) :
         binding.redirectCall.setOnClickListener {
             redirectCall(contact)
         }
+
+        Glide.with(binding.root)
+            .load("https://flagcdn.com/w320/${contact.flagCode}.png")
+            .into(binding.ddiFlag)
     }
 }

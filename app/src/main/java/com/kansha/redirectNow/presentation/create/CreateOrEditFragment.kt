@@ -88,14 +88,20 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             val contactTyped = binding.contact.text.toString()
             val phoneNumberTyped = binding.phoneNumber.text.toString()
             val ddiTyped = binding.ddi.text.toString()
+            val flagCode = getFlagCode(ddiTyped)
 
             if (contactTyped.isBlank() || phoneNumberTyped.isBlank() || ddiTyped.isBlank()) {
                 Toast.makeText(requireContext(), "Por favor, preencha os campos.", Toast.LENGTH_LONG).show()
             } else {
-                viewModel.checksSaveOrEdit(contactTyped, ddiTyped, phoneNumberTyped)
+                viewModel.checksSaveOrEdit(contactTyped, ddiTyped, phoneNumberTyped, flagCode)
                 hideKeyboard()
             }
         }
+    }
+
+    fun getFlagCode(ddiTyped: String): String {
+        val code = countryList.find { it.countryCode == ddiTyped }
+        return code?.flagCode ?: ""
     }
 
     private fun hideKeyboard() {

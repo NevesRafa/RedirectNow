@@ -12,14 +12,14 @@ class CreateOrEditViewModel : ViewModel() {
     val loadStateLiveData = MutableLiveData<CreateOrEditState>()
 
 
-    fun checksSaveOrEdit(contactTyped: String, ddiTyped: String, phoneNumberTyped: String) {
+    fun checksSaveOrEdit(contactTyped: String, ddiTyped: String, phoneNumberTyped: String, flagCode: String) {
         val isValidDdi = isDdiValid(ddiTyped)
 
         if (isValidDdi) {
             val contact: PhoneDetails
 
             if (!isEdit) {
-                contact = createNewContact(contactTyped, ddiTyped, phoneNumberTyped)
+                contact = createNewContact(contactTyped, ddiTyped, phoneNumberTyped, flagCode)
             } else {
                 contact = changeContactForEdit(contactTyped, ddiTyped, phoneNumberTyped)
             }
@@ -44,12 +44,13 @@ class CreateOrEditViewModel : ViewModel() {
         return contactForEdit!!
     }
 
-    private fun createNewContact(contactTyped: String, ddiTyped: String, phoneNumberTyped: String): PhoneDetails {
+    private fun createNewContact(contactTyped: String, ddiTyped: String, phoneNumberTyped: String, flagCode: String): PhoneDetails {
         return PhoneDetails(
             id = 0,
             contact = contactTyped,
             ddi = ddiTyped,
-            phoneNumber = phoneNumberTyped
+            phoneNumber = phoneNumberTyped,
+            flagCode = flagCode
         )
     }
 
