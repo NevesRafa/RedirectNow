@@ -10,7 +10,7 @@
         android:id="@+id/text_empty_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista de contatos vazia"
+        android:text="@string/empty_list"
         android:textSize="16sp"
         android:textStyle="italic"
         android:visibility="gone"
@@ -42,6 +42,7 @@
             android:layout_gravity="bottom"
             android:backgroundTint="#202A30"
             app:fabAlignmentMode="end"
+            app:menu="@menu/menu_info"
             app:fabCradleMargin="8dp"
             app:fabCradleRoundedCornerRadius="32dp" />
 
@@ -53,6 +54,7 @@
             app:backgroundTint="?attr/colorAccent"
             app:layout_anchor="@id/bottomAppBar"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
+            android:contentDescription="@string/create_contact"
             app:tint="@color/white" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

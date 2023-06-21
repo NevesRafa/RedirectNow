@@ -8,7 +8,7 @@ import com.kansha.redirectNow.presentation.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-const val DATABASE_NAME = "phone2whats.db"
+const val DATABASE_NAME = "redirectNow.db"
 
 val appModule = module {
 

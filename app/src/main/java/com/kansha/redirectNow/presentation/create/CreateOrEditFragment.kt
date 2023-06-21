@@ -99,7 +99,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         }
     }
 
-    fun getFlagCode(ddiTyped: String): String {
+    private fun getFlagCode(ddiTyped: String): String {
         val code = countryList.find { it.countryCode == ddiTyped }
         return code?.flagCode ?: ""
     }

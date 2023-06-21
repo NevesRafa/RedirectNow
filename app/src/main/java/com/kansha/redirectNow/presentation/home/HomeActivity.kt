@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -18,6 +19,7 @@ import com.kansha.redirectNow.internal.extension.gone
 import com.kansha.redirectNow.internal.extension.setErrorStyle
 import com.kansha.redirectNow.internal.extension.visible
 import com.kansha.redirectNow.presentation.create.CreateOrEditFragment
+import com.kansha.redirectNow.presentation.info.InfoScreenActivity
 import org.koin.android.ext.android.inject
 
 class HomeActivity : AppCompatActivity() {
@@ -34,6 +36,7 @@ class HomeActivity : AppCompatActivity() {
         setupPhoneList()
         setupObservers()
         fabAddPhone()
+        showInfoApp()
         viewModel.loadList()
 
     }
@@ -155,5 +158,20 @@ class HomeActivity : AppCompatActivity() {
         Snackbar.make(binding.root, getString(R.string.error_message, errorMessage), Snackbar.LENGTH_LONG)
             .setErrorStyle()
             .show()
+    }
+
+    private fun showInfoApp() {
+
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.button_info -> {
+                    val intent = Intent(this, InfoScreenActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
+                else -> false
+            }
+        }
     }
 }

@@ -14,4 +14,8 @@
     <string name="message_remove">Tem certeza de que deseja remover este contato?</string>
     <string name="skip">Pular</string>
     <string name="save_change">Salvar alteração</string>
+    <string name="info">Informações</string>
+    <string name="empty_list">Lista de contatos vazia</string>
+    <string name="create_contact">Criar contato</string>
+    <string name="text_info">Ajude a manter nosso app!\n\nNós o criamos sem propagandas para preservar sua experiência. Se quiser nos apoiar, adquira a versão paga na loja por um valor simbólico. Assim, você nos incentiva a continuar desenvolvendo e mantendo o app.\n\nObrigado pelo seu apoio!</string>
 </resources>
