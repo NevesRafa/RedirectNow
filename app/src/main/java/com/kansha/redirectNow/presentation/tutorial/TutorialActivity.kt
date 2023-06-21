@@ -49,8 +49,11 @@ class TutorialActivity : AppCompatActivity() {
     }
 
     private fun setupPageView() {
-        val tutorialText = listOf(
-            TutorialDetails(R.drawable.start, "Na tela inicial do aplicativo, clique no canto inferior direito para adicionar um novo contato."),
+        val tutorialPages = listOf(
+            TutorialDetails(
+                R.drawable.start,
+                "Na tela inicial do aplicativo, clique no canto inferior direito para adicionar um novo contato."
+            ),
             TutorialDetails(
                 R.drawable.name_and_phone,
                 "Preencha os campos \"Nome\" e \"Telefone\". É fundamental incluir o DDD, pois sem ele o contato não será localizado corretamente."
@@ -69,7 +72,7 @@ class TutorialActivity : AppCompatActivity() {
             )
         )
 
-        val adapter = ViewPagerAdapter(this, tutorialText)
+        val adapter = TutorialViewPager(tutorialPages)
         binding.viewPager.adapter = adapter
 
         val wormDotsIndicator = binding.wormDotsIndicator

@@ -11,11 +11,12 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/redirectButton"
+        app:layout_constraintBottom_toTopOf="@id/worm_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/button_skip" />
 
     <Button
         android:id="@+id/button_skip"
@@ -47,18 +48,19 @@
 
     <ImageButton
         android:id="@+id/redirectButton"
+        style="@style/RoundButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_home"
-        style="@style/RoundButtonStyle"
-        android:visibility="gone"
         android:padding="8dp"
+        android:src="@drawable/ic_home"
+        android:visibility="gone"
         app:backgroundTint="?attr/colorAccent"
         app:layout_constraintBottom_toBottomOf="@id/worm_dots_indicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/worm_dots_indicator" />
+        app:layout_constraintTop_toTopOf="@id/worm_dots_indicator"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
