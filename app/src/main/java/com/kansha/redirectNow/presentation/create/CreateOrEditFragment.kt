@@ -8,11 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
+import com.kansha.redirectNow.data.model.CountryDetails
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
 import com.kansha.redirectNow.domain.countryList
@@ -21,7 +25,6 @@ import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {
 
-    private var toast: Toast? = null
     private var currentMask: TextWatcher? = null
 
     companion object {
@@ -107,7 +110,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             if (contactTyped.isBlank() || phoneNumberTyped.isBlank() || ddiTyped.isBlank()) {
                 Toast.makeText(
                     requireContext(),
-                    "Por favor, preencha os campos.",
+                    getString(R.string.alert_toast_fill_in_all_fields),
                     Toast.LENGTH_LONG
                 ).show()
             } else {
@@ -124,8 +127,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     }
 
     private fun showDropDown() {
-        val countryCodes = countryList.map { it.countryCode }
-        val adapter = ArrayAdapter(requireContext(), R.layout.ddi_dropdown_item, countryCodes)
+        val adapter = CountryAdapter(requireContext(), R.layout.ddi_dropdown_item, countryList)
 
         binding.ddi.setAdapter(adapter)
 
@@ -133,19 +135,34 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             viewModel.setDdi(it.toString())
         }
 
-        binding.ddi.setOnItemClickListener { _, _, _, _ ->
-            val typedText = binding.ddi.text.toString()
-            viewModel.setDdi(typedText)
+        binding.ddi.setOnItemClickListener { _, _, position, _ ->
+            val selectedCountry = adapter.getItem(position)
+            val countryCode = selectedCountry?.countryCode.orEmpty()
+
+            binding.ddi.setText(countryCode)
+            viewModel.setDdi(countryCode)
         }
     }
 
+    private class CountryAdapter(
+        context: Context,
+        private val resource: Int,
+        private val countries: List<CountryDetails>
+    ) : ArrayAdapter<CountryDetails>(context, resource, countries) {
 
-    private fun showToast(message: String) {
-        toast?.cancel()
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val view = convertView ?: LayoutInflater.from(context).inflate(resource, parent, false)
+            val countryItem = getItem(position)
+            val countryCodeTextView: TextView = view.findViewById(R.id.dropdown_code)
+            val countryFlagImageView: ImageView = view.findViewById(R.id.dropdown_flag)
 
-        if (message.isNotEmpty()) {
-            toast = Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT)
-            toast?.show()
+            countryCodeTextView.text = countryItem?.countryCode
+
+            Glide.with(context)
+                .load("https://flagcdn.com/w320/${countryItem?.flagCode}.png")
+                .into(countryFlagImageView)
+
+            return view
         }
     }
 
