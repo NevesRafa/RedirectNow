@@ -2,25 +2,27 @@ package com.kansha.redirectNow.presentation.create
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
 import com.kansha.redirectNow.domain.countryList
-import com.kansha.redirectNow.internal.extension.PhoneNumberTextWatcher
 import com.kansha.redirectNow.internal.extension.setErrorStyle
 import org.koin.android.ext.android.inject
 
 class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomSheetDialogFragment() {
 
     private var toast: Toast? = null
+    private var currentMask: TextWatcher? = null
 
     companion object {
         const val EXTRA_PHONE_EDIT = "extra_phone_edit"
@@ -46,8 +48,6 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         saveButton()
         showDropDown()
 
-        val editText = binding.phoneNumber
-        editText.addTextChangedListener(PhoneNumberTextWatcher(editText))
     }
 
     private fun setupObservers() {
@@ -60,6 +60,19 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
                 is CreateOrEditState.Error -> showErrorMessage(state.errorMessage)
             }
         }
+
+        viewModel.phoneMaskLiveData.observe(this) { newMask ->
+
+            if (currentMask != null) {
+                binding.phoneNumber.removeTextChangedListener(currentMask)
+            }
+
+            currentMask = newMask
+            binding.phoneNumber.addTextChangedListener(currentMask)
+
+        }
+
+
     }
 
     private fun toastInvalidDdi() {
@@ -75,6 +88,7 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     private fun showContactForEditOnTheScreen(contactForEdit: PhoneDetails?) {
         binding.contact.setText(contactForEdit?.contact)
         binding.phoneNumber.setText(contactForEdit?.phoneNumber)
+        binding.ddi.setText(contactForEdit?.ddi)
         binding.fabSaveRedirect.text = getString(R.string.save_change)
     }
 
@@ -88,10 +102,14 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
             val contactTyped = binding.contact.text.toString()
             val phoneNumberTyped = binding.phoneNumber.text.toString()
             val ddiTyped = binding.ddi.text.toString()
-            val flagCode = getFlagCode(ddiTyped)
+            val flagCode = viewModel.getFlagCode(ddiTyped)
 
             if (contactTyped.isBlank() || phoneNumberTyped.isBlank() || ddiTyped.isBlank()) {
-                Toast.makeText(requireContext(), "Por favor, preencha os campos.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Por favor, preencha os campos.",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
                 viewModel.checksSaveOrEdit(contactTyped, ddiTyped, phoneNumberTyped, flagCode)
                 hideKeyboard()
@@ -99,13 +117,9 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         }
     }
 
-    private fun getFlagCode(ddiTyped: String): String {
-        val code = countryList.find { it.countryCode == ddiTyped }
-        return code?.flagCode ?: ""
-    }
-
     private fun hideKeyboard() {
-        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
@@ -115,17 +129,16 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
 
         binding.ddi.setAdapter(adapter)
 
+        binding.ddi.doAfterTextChanged {
+            viewModel.setDdi(it.toString())
+        }
+
         binding.ddi.setOnItemClickListener { _, _, _, _ ->
             val typedText = binding.ddi.text.toString()
-            val countryName = getCountryName(typedText)
-            showToast(countryName)
+            viewModel.setDdi(typedText)
         }
     }
 
-    private fun getCountryName(countryCode: String): String {
-        val country = countryList.find { it.countryCode == countryCode }
-        return country?.name ?: ""
-    }
 
     private fun showToast(message: String) {
         toast?.cancel()
@@ -137,7 +150,11 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
     }
 
     private fun showErrorMessage(errorMessage: String?) {
-        Snackbar.make(binding.root, getString(R.string.error_message, errorMessage), Snackbar.LENGTH_LONG)
+        Snackbar.make(
+            binding.root,
+            getString(R.string.error_message, errorMessage),
+            Snackbar.LENGTH_LONG
+        )
             .setErrorStyle()
             .show()
     }

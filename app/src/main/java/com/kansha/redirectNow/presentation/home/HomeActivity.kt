@@ -26,7 +26,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val viewModel: HomeViewModel by inject()
     private lateinit var adapter: HomeAdapter
-    lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         setupPhoneList()
         setupObservers()
         fabAddPhone()
-        showInfoApp()
+        //showInfoApp()
         viewModel.loadList()
 
     }
@@ -160,18 +160,18 @@ class HomeActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun showInfoApp() {
-
-        binding.bottomAppBar.setOnMenuItemClickListener { menuItem: MenuItem ->
-            when (menuItem.itemId) {
-                R.id.button_info -> {
-                    val intent = Intent(this, InfoScreenActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                else -> false
-            }
-        }
-    }
+//    private fun showInfoApp() {
+//
+//        binding.bottomAppBar.setOnMenuItemClickListener { menuItem: MenuItem ->
+//            when (menuItem.itemId) {
+//                R.id.button_info -> {
+//                    val intent = Intent(this, InfoScreenActivity::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//
+//                else -> false
+//            }
+//        }
+//    }
 }

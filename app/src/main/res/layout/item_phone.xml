@@ -30,13 +30,14 @@
             android:id="@+id/contact_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@id/phone_number"
             app:layout_constraintStart_toEndOf="@id/ic_name"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/redirect_call"
             tool:text="Rafael" />
 
         <ImageView
@@ -47,14 +48,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ddi_flag"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ic_name"
+            app:layout_constraintTop_toBottomOf="@id/contact_name"
             app:tint="?colorOnSurface" />
 
         <ImageView
             android:id="@+id/ddi_flag"
             android:layout_width="22dp"
             android:layout_height="22dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/br"
             app:layout_constraintBottom_toBottomOf="@id/phone_number"
             app:layout_constraintEnd_toStartOf="@id/phone_number"
@@ -66,17 +67,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:layout_marginEnd="16dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ddi_flag"
             app:layout_constraintTop_toBottomOf="@id/contact_name"
+            app:layout_constraintEnd_toStartOf="@id/redirect_call"
             tool:text="(15) 991307093" />
 
         <ImageView
             android:id="@+id/redirect_whatsapp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_message"
@@ -89,7 +92,7 @@
             android:id="@+id/redirect_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_phone"
