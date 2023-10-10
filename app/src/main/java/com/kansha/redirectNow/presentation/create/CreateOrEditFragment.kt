@@ -7,16 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.kansha.redirectNow.R
-import com.kansha.redirectNow.data.model.CountryDetails
 import com.kansha.redirectNow.data.model.PhoneDetails
 import com.kansha.redirectNow.databinding.FragmentCreateOrEditBinding
 import com.kansha.redirectNow.domain.countryList
@@ -65,17 +60,13 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
         }
 
         viewModel.phoneMaskLiveData.observe(this) { newMask ->
-
             if (currentMask != null) {
                 binding.phoneNumber.removeTextChangedListener(currentMask)
             }
 
             currentMask = newMask
             binding.phoneNumber.addTextChangedListener(currentMask)
-
         }
-
-
     }
 
     private fun toastInvalidDdi() {
@@ -137,32 +128,10 @@ class CreateOrEditFragment(val clickOnSave: (PhoneDetails) -> Unit) : BottomShee
 
         binding.ddi.setOnItemClickListener { _, _, position, _ ->
             val selectedCountry = adapter.getItem(position)
-            val countryCode = selectedCountry?.countryCode.orEmpty()
+            val countryCode = selectedCountry.countryCode
 
             binding.ddi.setText(countryCode)
             viewModel.setDdi(countryCode)
-        }
-    }
-
-    private class CountryAdapter(
-        context: Context,
-        private val resource: Int,
-        private val countries: List<CountryDetails>
-    ) : ArrayAdapter<CountryDetails>(context, resource, countries) {
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            val view = convertView ?: LayoutInflater.from(context).inflate(resource, parent, false)
-            val countryItem = getItem(position)
-            val countryCodeTextView: TextView = view.findViewById(R.id.dropdown_code)
-            val countryFlagImageView: ImageView = view.findViewById(R.id.dropdown_flag)
-
-            countryCodeTextView.text = countryItem?.countryCode
-
-            Glide.with(context)
-                .load("https://flagcdn.com/w320/${countryItem?.flagCode}.png")
-                .into(countryFlagImageView)
-
-            return view
         }
     }
 
