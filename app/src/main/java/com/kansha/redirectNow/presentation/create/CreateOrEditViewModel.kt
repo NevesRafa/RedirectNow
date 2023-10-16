@@ -30,7 +30,7 @@ class CreateOrEditViewModel : ViewModel() {
             if (!isEdit) {
                 contact = createNewContact(contactTyped, ddiTyped, phoneNumberTyped, flagCode)
             } else {
-                contact = changeContactForEdit(contactTyped, ddiTyped, phoneNumberTyped)
+                contact = changeContactForEdit(contactTyped, ddiTyped, phoneNumberTyped, flagCode)
             }
             loadStateLiveData.postValue(CreateOrEditState.Save(contact))
         } else {
@@ -46,13 +46,15 @@ class CreateOrEditViewModel : ViewModel() {
     private fun changeContactForEdit(
         contactTyped: String,
         ddiTyped: String,
-        phoneNumberTyped: String
+        phoneNumberTyped: String,
+        flagCodeTyped: String
     ): PhoneDetails {
 
         contactForEdit?.apply {
             contact = contactTyped
             ddi = ddiTyped
             phoneNumber = phoneNumberTyped
+            flagCode = flagCodeTyped
         }
         return contactForEdit!!
     }

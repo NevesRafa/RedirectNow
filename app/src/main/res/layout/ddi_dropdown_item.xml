@@ -9,7 +9,6 @@
         android:id="@+id/dropdown_flag"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginStart="8dp"
         android:contentDescription=""
         android:src="@drawable/br" />
 
